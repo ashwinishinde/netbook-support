@@ -18,26 +18,30 @@ class NetbookSupport:
         # Set the appearance of the Button Box
         bbox.set_layout(layout)
         bbox.set_spacing(spacing)
-
+	button = gtk.Button()
         #button = gtk.Button(stock=gtk.STOCK_OK)
-       
         image = gtk.Image()
-        image.set_from_file("abt_logo.png")
-        image.show()
-        # a button to contain the image widget
-        button = gtk.Button()
-        button.add(image)
-        bbox.add(button)
+        
         if (horizontal == "1"):
+        	image.set_from_file("MApps.png")
 		button.connect("clicked", self.button_clicked, "1")
 		
+		
 	elif(horizontal == "2"):
+		image.set_from_file("AAQ.png")
 		button.connect("clicked", self.button_clicked, "2")
 	else:
-		
+		image.set_from_file("Discussion.png")
         	button.connect("clicked", self.button_clicked, "3")
         
         # button.show()
+       
+        
+        image.show()
+        # a button to contain the image widget
+       
+        button.add(image)
+        bbox.add(button)
 	
         return frame
         
@@ -54,11 +58,17 @@ class NetbookSupport:
 	else:
 		url = 'http://netbook-support.fossee.in'
 		webbrowser.open(url)
+		
 
     def __init__(self):
+    	
         window = gtk.Window(gtk.WINDOW_TOPLEVEL)
+        window.set_position(gtk.WIN_POS_CENTER)
         window.set_title("Welcome to Netbook Suppport")
-
+	
+	window.set_resizable(False)
+	
+	
         window.connect("destroy", lambda x: gtk.main_quit())
 
         window.set_border_width(10)
